@@ -59,7 +59,7 @@ let version = "1.15.1" in
     } | Attrs,
 
   tests = {
-    version =
+    reports_version =
       {
         class = 'Standalone,
         test_deps = [base],
