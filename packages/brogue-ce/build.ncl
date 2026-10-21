@@ -34,7 +34,7 @@ let version = "1.15.1" in
   runtime_deps = [
     glibc,
     subsetOf gcc ["libgcc"],
-    subsetOf ncurses ["libncurses", "terminfo"],
+    ncurses,
   ],
 
   cmd = "./build.sh",
