@@ -8,6 +8,7 @@ case $(uname -m) in
 esac
 export CFLAGS="$MARCH -O2 -pipe -gno-record-gcc-switches -ffile-prefix-map=$(pwd)=/builddir"
 export LDFLAGS="-Wl,--build-id=none"
+export CC=gcc
 
 # PREFIX is baked into fiu-run (PLIBPATH) and libfiu.pc (DESTDIR); install
 # re-roots PREFIX under $OUTPUT_DIR while keeping the baked paths at /usr.

@@ -1,6 +1,7 @@
 let { Attrs, BuildSpec, Local, OutputBin, OutputData, OutputLib, Source, Test, .. } = import "minimal.ncl" in
 let base = import "../base/build.ncl" in
 let bash = import "../bash/build.ncl" in
+let coreutils = import "../coreutils/build.ncl" in
 let glibc = import "../glibc/build.ncl" in
 let make = import "../make/build.ncl" in
 let toolchain = import "../toolchain/build.ncl" in
@@ -20,8 +21,10 @@ let version = "1.2" in
     make,
     toolchain,
   ],
+  # fiu-* are `#!/usr/bin/env bash` scripts (env, cut, tr from coreutils).
   runtime_deps = [
     bash,
+    coreutils,
     glibc,
   ],
 
@@ -56,8 +59,13 @@ let version = "1.2" in
             "/bin/bash",
             "-c",
             m%"
-          fiu-run -x -c 'enable name=posix/io/oc/open' cat /etc/hostname && exit 1
+          set -e
+          f=$(mktemp)
+          echo hello > "$f"
+          test "$(fiu-run -x cat "$f")" = hello
+          if fiu-run -x -c 'enable name=posix/io/oc/open' cat "$f"; then exit 1; fi
           fiu-run -x -c 'enable name=libc/mm/malloc' true || true
+          rm -f "$f"
           echo OK
         "%
           ],
