@@ -11,10 +11,12 @@ let node-lts = upstream "node-lts" in
 # ships an npm-shrinkwrap.json, so installing it locks the transitive
 # dependency tree and keeps the build reproducible. The `#!/usr/bin/env node`
 # shebang of the installed bin is served by coreutils(env) + node.
-# Sideloaded ahead of upstream (gominimal/pkgs has 1.0.2); nexus lanes need 1.3.0.
+# Sideloaded ahead of upstream (gominimal/pkgs has pi 1.0.2); nexus lanes need 1.3.0.
+# A sideload cannot shadow an upstream package name, hence pi-next. Drop it once
+# upstream pi is bumped.
 let version = "1.3.0" in
 {
-  name = "pi",
+  name = "pi-next",
   build_deps = [
     { file = "build.sh" } | Local,
     {
