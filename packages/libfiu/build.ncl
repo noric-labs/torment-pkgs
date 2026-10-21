@@ -1,10 +1,11 @@
-let { Attrs, BuildSpec, Local, OutputBin, OutputData, OutputLib, Source, Test, .. } = import "minimal.ncl" in
-let base = import "../base/build.ncl" in
-let bash = import "../bash/build.ncl" in
-let coreutils = import "../coreutils/build.ncl" in
-let glibc = import "../glibc/build.ncl" in
-let make = import "../make/build.ncl" in
-let toolchain = import "../toolchain/build.ncl" in
+let { upstream, Attrs, BuildSpec, Local, OutputBin, OutputData, OutputLib, Source, Test, .. } = import "minimal.ncl" in
+let base = upstream "base" in
+let bash = upstream "bash" in
+let coreutils = upstream "coreutils" in
+let glibc = upstream "glibc" in
+let make = upstream "make" in
+let python = upstream "python" in
+let toolchain = upstream "toolchain" in
 
 let version = "1.2" in
 {
@@ -19,6 +20,7 @@ let version = "1.2" in
     } | Source,
     base,
     make,
+    python,
     toolchain,
   ],
   # fiu-* are `#!/usr/bin/env bash` scripts (env, cut, tr from coreutils).

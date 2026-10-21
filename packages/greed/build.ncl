@@ -1,10 +1,10 @@
-let { Attrs, BuildSpec, Local, OutputBin, Source, Test, .. } = import "minimal.ncl" in
-let base = import "../base/build.ncl" in
-let glibc = import "../glibc/build.ncl" in
-let make = import "../make/build.ncl" in
-let ncurses = import "../ncurses/build.ncl" in
-let toolchain = import "../toolchain/build.ncl" in
-let util-linux = import "../util-linux/build.ncl" in
+let { upstream, Attrs, BuildSpec, Local, OutputBin, Source, Test, .. } = import "minimal.ncl" in
+let base = upstream "base" in
+let glibc = upstream "glibc" in
+let make = upstream "make" in
+let ncurses = upstream "ncurses" in
+let toolchain = upstream "toolchain" in
+let util-linux = upstream "util-linux" in
 
 # 4.5 is the last C/ncurses release; 5.x is a Rust/crossterm rewrite.
 let version = "4.5" in

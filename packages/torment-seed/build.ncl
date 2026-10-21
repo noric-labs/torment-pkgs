@@ -1,8 +1,8 @@
-let { Attrs, BuildSpec, Local, OutputBin, OutputLib, Test, .. } = import "minimal.ncl" in
-let base = import "../base/build.ncl" in
-let glibc = import "../glibc/build.ncl" in
-let python = import "../python/build.ncl" in
-let toolchain = import "../toolchain/build.ncl" in
+let { upstream, Attrs, BuildSpec, Local, OutputBin, OutputLib, Test, .. } = import "minimal.ncl" in
+let base = upstream "base" in
+let glibc = upstream "glibc" in
+let python = upstream "python" in
+let toolchain = upstream "toolchain" in
 
 # LD_PRELOAD shim that makes getrandom, /dev/urandom, rand and arc4random
 # deterministic under TORMENT_SEED. Design notes and limits: torment_seed.c.

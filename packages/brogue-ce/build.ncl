@@ -1,12 +1,12 @@
-let { subsetOf, Attrs, BuildSpec, Local, OutputBin, OutputData, Source, Test, .. } = import "minimal.ncl" in
-let base = import "../base/build.ncl" in
-let gcc = import "../gcc/build.ncl" in
-let glibc = import "../glibc/build.ncl" in
-let llvm = import "../llvm/build.ncl" in
-let make = import "../make/build.ncl" in
-let ncurses = import "../ncurses/build.ncl" in
-let tmux = import "../tmux/build.ncl" in
-let toolchain = import "../toolchain/build.ncl" in
+let { upstream, subsetOf, Attrs, BuildSpec, Local, OutputBin, OutputData, Source, Test, .. } = import "minimal.ncl" in
+let base = upstream "base" in
+let gcc = upstream "gcc" in
+let glibc = upstream "glibc" in
+let llvm = upstream "llvm" in
+let make = upstream "make" in
+let ncurses = upstream "ncurses" in
+let tmux = upstream "tmux" in
+let toolchain = upstream "toolchain" in
 
 # Terminal-only (ncurses) Brogue CE, two binaries:
 #   brogue-ce       gcc -O2 release build

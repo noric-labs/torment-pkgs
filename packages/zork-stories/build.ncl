@@ -1,5 +1,5 @@
-let { Attrs, BuildSpec, Local, OutputData, Source, Test, .. } = import "minimal.ncl" in
-let base = import "../base/build.ncl" in
+let { upstream, Attrs, BuildSpec, Local, OutputData, Source, Test, .. } = import "minimal.ncl" in
+let base = upstream "base" in
 
 # Microsoft released Zork I-III under the MIT license on 2025-11-20; each
 # historicalsource repo ships the compiled story file in COMPILED/.
